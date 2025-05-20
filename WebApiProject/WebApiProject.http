@@ -1,0 +1,22 @@
+@WebApiProject_HostAddress = https://localhost:7072
+
+GET {{WebApiProject_HostAddress}}/todos/
+Accept: application/json
+
+###
+GET {{WebApiProject_HostAddress}}/todos/12
+Accept: application/json
+
+###
+POST {{WebApiProject_HostAddress}}/todos?title=abcd
+Accept: application/json
+
+###
+PUT {{WebApiProject_HostAddress}}/todos
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "iamtest",
+  "description": "content"
+}
