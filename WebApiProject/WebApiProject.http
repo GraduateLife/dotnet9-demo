@@ -4,7 +4,7 @@ GET {{WebApiProject_HostAddress}}/todos/
 Accept: application/json
 
 ###
-GET {{WebApiProject_HostAddress}}/todos/12
+GET {{WebApiProject_HostAddress}}/todos/1
 Accept: application/json
 
 ###
@@ -20,3 +20,11 @@ Content-Type: application/json
   "title": "iamtest",
   "description": "content"
 }
+
+###
+DELETE {{WebApiProject_HostAddress}}/todos/8
+Accept: application/json
+
+###
+DELETE {{WebApiProject_HostAddress}}/todos/purge
+Accept: application/json

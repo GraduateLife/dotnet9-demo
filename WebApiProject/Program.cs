@@ -1,3 +1,8 @@
+using System.Text.Json;
+using Microsoft.EntityFrameworkCore;
+using WebApiProject.Data;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -5,6 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 
 builder.Services.AddSwaggerGen();
+
+var configuration = builder.Configuration;
+builder.Services.AddDbContext<TodoDbContext>(options =>
+    options.UseSqlite(configuration.GetConnectionString("Default")));
 
 var app = builder.Build();
 
@@ -18,62 +27,75 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-List<Todo> todos = [];
-var currentId = 1;
-
-app.MapGet("/todos", () => Results.Ok(todos));
-
-app.MapGet("/todos/{id}", (int id) =>
+app.MapGet("/todos", async (TodoDbContext db) =>
 {
-    var res = todos.Find(t => t.Id == id);
-    return res == null ? Results.NotFound($"Cannot find any todo with id {id}") : Results.Ok(res);
-});
+    var res=await db.Todos.OrderBy(t => t.Id).AsNoTracking().ToListAsync();
+    return Results.Ok(res);
+}).WithName("GetListedTodos");
 
-app.MapPost("/todos", (string title) =>
+app.MapGet("/todos/{id}", async (int id, TodoDbContext db) =>
 {
-    if (todos.Any(t => t.Title == title))
+    var res = await db.Todos.FirstOrDefaultAsync(t => t.Id == id);
+    return res is null ? Results.NotFound($"Cannot find any todo with id {id}") : Results.Ok(res);
+}).WithName("GetTodoById");
+
+app.MapPost("/todos", async (string title, TodoDbContext db) =>
+{
+    var found = await db.Todos.FirstOrDefaultAsync(t => t.Title == title);
+    if (found is not null)
     {
         return Results.BadRequest("Title already exists");
     }
-    var toCreate=new Todo(currentId, title);
-    todos.Add(toCreate);
-    currentId++;
-    return Results.Created($"/todos/{toCreate.Id}", toCreate);
-});
+    var toCreate=new Todo()
+    {
+        Title = title,
+        Description = string.Empty,
+        IsCompleted = false
+    };
+    db.Todos.Add(toCreate);
+    await db.SaveChangesAsync();
+    return Results.CreatedAtRoute("GetTodoById",new {id=toCreate.Id}, toCreate);
+}).WithName("CreateTodoByTitle");
 
-app.MapPut("/todos", (Todo fromRequest) =>
+app.MapPut("/todos", async (Todo fromRequest, TodoDbContext db) =>
 {
-    
-    if (todos.Any(t => t.Title == fromRequest.Title))
+    var has = await db.Todos.AnyAsync(t => t.Title == fromRequest.Title);
+    if (has)
     {
         return Results.BadRequest("Title already exists");
     }
-    var toCreate=new Todo(currentId, fromRequest.Title, fromRequest.Description);
-    todos.Add(toCreate);
-    currentId++;
-    return Results.Created($"/todos/{toCreate.Id}", toCreate);
-});
 
-app.MapDelete("/todos/{id}", (int id) =>
+    var toCreate = new Todo()
+    {
+        Title = fromRequest.Title,
+        Description = fromRequest.Description,
+        IsCompleted = false
+    };
+    db.Todos.Add(toCreate);
+    await db.SaveChangesAsync();
+    return Results.CreatedAtRoute("GetTodoById",new {id=toCreate.Id}, toCreate);
+}).WithName("CreateTodoFromBody");
+
+app.MapDelete("/todos/{id}", async (int id, TodoDbContext db) =>
 {
-    var res = todos.Find(t => t.Id == id);
-    if (res == null)
+    var foundItem = await db.Todos.FirstOrDefaultAsync(t => t.Id == id);
+    if (foundItem is null)
     {
         return Results.NotFound();
     }
-    todos.Remove(res);
+    db.Todos.Remove(foundItem);
+    await db.SaveChangesAsync();
     return Results.NoContent();
-});
+}).WithName("DeleteTodoById");
+
+app.MapDelete("/todos/purge", async (TodoDbContext db) =>
+{
+    db.Todos.RemoveRange(db.Todos);
+    await db.SaveChangesAsync();
+    return Results.Ok("All todos deleted");
+}).WithName("PurgeTodos");
 
 
 
 app.Run();
 
-
-internal class Todo(int id, string title, string description="")
-{
-    public int Id { get; set; } = id;
-    public string Title { get; set; }=title;
-    public string Description { get; set; }=description;
-    public bool IsCompleted { get; set; }=false;
-}
