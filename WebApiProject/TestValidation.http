@@ -1,0 +1,49 @@
+@WebApiProject_HostAddress = https://localhost:7072
+
+PUT {{WebApiProject_HostAddress}}/todos/isvalid
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "",
+  "description": "iamasupersupersupersupersupersupersupersupersupersupersupersuperlongcontent"
+}
+
+###
+PUT {{WebApiProject_HostAddress}}/todos/isvalid
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "@",
+  "description": "iamcontent"
+}
+
+###
+PUT {{WebApiProject_HostAddress}}/todos/isvalid
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "test",
+  "description": "iamcontent"
+}
+###
+PUT {{WebApiProject_HostAddress}}/todos/isvalid
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "iamok",
+  "description": "iamok",
+  "iamnotexist": "whatthehell"
+}
+###
+PUT {{WebApiProject_HostAddress}}/todos/isvalid
+Accept: application/json
+Content-Type: application/json
+
+{
+  "Title": "iamok",
+  "Description": "iamok"
+}

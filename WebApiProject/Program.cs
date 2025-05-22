@@ -1,4 +1,7 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
 using WebApiProject.Data;
 
@@ -14,6 +17,13 @@ builder.Services.AddSwaggerGen();
 var configuration = builder.Configuration;
 builder.Services.AddDbContext<TodoDbContext>(options =>
     options.UseSqlite(configuration.GetConnectionString("Default")));
+
+ // builder.Services.Configure<JsonOptions>(option =>
+ // {
+ //     option.SerializerOptions.UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow;
+ //     option.SerializerOptions.PropertyNameCaseInsensitive = false;
+ //     option.SerializerOptions.PropertyNamingPolicy = null;
+ // });
 
 var app = builder.Build();
 
@@ -96,6 +106,18 @@ app.MapDelete("/todos/purge", async (TodoDbContext db) =>
 }).WithName("PurgeTodos");
 
 
+
+app.MapPut("/todos/isvalid", (TodoCreateDto fromRequest) =>
+{
+    var vRes = new List<ValidationResult>();
+    var isValid=Validator.TryValidateObject(fromRequest, new ValidationContext(fromRequest),vRes,true);
+    
+    if (isValid) return Results.Ok("this is valid");
+    
+    var errors=vRes.ToDictionary(vr=>vr.MemberNames.First(),vr=>new[] {vr.ErrorMessage??"unknown v error"});
+    return Results.ValidationProblem(errors);
+    
+}).WithName("CheckTodo");
 
 app.Run();
 
