@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiProject.Data;
 
@@ -10,9 +11,11 @@ using WebApiProject.Data;
 namespace WebApiProject.Migrations
 {
     [DbContext(typeof(TodoDbContext))]
-    partial class TodoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250522083447_addDate")]
+    partial class addDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.5");
@@ -44,10 +47,11 @@ namespace WebApiProject.Migrations
                     b.Property<bool>("IsCompleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("LastModifiedAtUTC")
+                    b.Property<DateTime>("LastModifiedAtUTC")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastModifiedBy")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("StartAtUTC")

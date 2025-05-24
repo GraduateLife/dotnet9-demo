@@ -1,6 +1,6 @@
 @WebApiProject_HostAddress = https://localhost:7072
 
-PUT {{WebApiProject_HostAddress}}/todos/isvalid
+PUT {{WebApiProject_HostAddress}}/todos/isvalid/fv
 Accept: application/json
 Content-Type: application/json
 
@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 ###
-PUT {{WebApiProject_HostAddress}}/todos/isvalid
+PUT {{WebApiProject_HostAddress}}/todos/isvalid/fv
 Accept: application/json
 Content-Type: application/json
 
@@ -20,12 +20,12 @@ Content-Type: application/json
 }
 
 ###
-PUT {{WebApiProject_HostAddress}}/todos/isvalid
+PUT {{WebApiProject_HostAddress}}/todos/isvalid/fv
 Accept: application/json
 Content-Type: application/json
 
 {
-  "title": "test",
+  "title": "abcd",
   "description": "iamcontent"
 }
 ###
@@ -46,4 +46,14 @@ Content-Type: application/json
 {
   "Title": "iamok",
   "Description": "iamok"
+}
+###
+PUT {{WebApiProject_HostAddress}}/todos/isvalid
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "test",
+  "description": "iamcontent",
+  "due_at_utc": "2099-05-1T08:07:00.245125Z"
 }

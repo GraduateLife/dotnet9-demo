@@ -150,3 +150,6 @@
 /Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/bin/Debug/net9.0/FluentValidation.dll
+/Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/bin/Debug/net9.0/FluentValidation.DependencyInjectionExtensions.dll
+/Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/obj/Debug/net9.0/WebApiProject.sourcelink.json

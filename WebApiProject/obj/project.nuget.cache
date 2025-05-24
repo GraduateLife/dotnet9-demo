@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "xPpRDIVnjbk=",
+  "dgSpecHash": "PC7KUttT59c=",
   "success": true,
   "projectFilePath": "/Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/WebApiProject.csproj",
   "expectedPackageFiles": [
+    "/Users/zhangyuntao/.nuget/packages/fluentvalidation/12.0.0/fluentvalidation.12.0.0.nupkg.sha512",
+    "/Users/zhangyuntao/.nuget/packages/fluentvalidation.dependencyinjectionextensions/12.0.0/fluentvalidation.dependencyinjectionextensions.12.0.0.nupkg.sha512",
     "/Users/zhangyuntao/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/zhangyuntao/.nuget/packages/microsoft.aspnetcore.openapi/9.0.5/microsoft.aspnetcore.openapi.9.0.5.nupkg.sha512",
     "/Users/zhangyuntao/.nuget/packages/microsoft.bcl.asyncinterfaces/7.0.0/microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
