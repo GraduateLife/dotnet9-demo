@@ -1,42 +1,61 @@
-using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using FluentValidation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using WebApiProject.Behaviors;
 using WebApiProject.Data;
-using WebApiProject.Endpoints;
-using WebApiProject.Filters;
-
+using WebApiProject.Todo.CreateTodoCommand;
+using WebApiProject.Todo.DeleteTodoByIdCommand;
+using WebApiProject.Todo.GetTodoByIdRequest;
+using WebApiProject.Todo.ListTodosRequest;
+using WebApiProject.Todo.UpdateTodoTitleCommand;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-
 builder.Services.AddSwaggerGen();
 
 var configuration = builder.Configuration;
 builder.Services.AddDbContext<TodoDbContext>(options =>
-    options.UseSqlite(configuration.GetConnectionString("Default")));
-
-
-
+    options.UseSqlite(configuration.GetConnectionString("Default"))
+        .LogTo(Console.WriteLine, LogLevel.Information) // 输出到控制台，级别为 Information
+        .EnableSensitiveDataLogging() // 启用敏感数据日志（如参数值），仅限开发环境！
+        .EnableDetailedErrors()); // 启用详细错误信息));
 
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+    cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+});
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<TodoDbContext>();
+        dbContext.Database.Migrate();
+    }
+
     app.MapOpenApi();
     app.UseSwagger();
-    app.UseSwaggerUI((options)=>options.SwaggerEndpoint($"/swagger/v1/swagger.json", $"Todo API V1"));
-    
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 
-app.AddV1Endpoints("super cool todo app v1");
+app.MapGroup("/todos")
+    .AddCreateTodoEndpoint()
+    .AddListTodosEndpoint()
+    .AddGetTodoByIdEndpoint()
+    .AddUpdateTodoTitleEndpoint()
+    .AddDeleteTodoByIdEndpoint();
+
 
 app.Run();
-

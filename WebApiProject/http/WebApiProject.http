@@ -1,28 +1,30 @@
-@WebApiProject_HostAddress = https://localhost:7072
+@WebApiProject_HostAddress = http://localhost:5130
 
-GET {{WebApiProject_HostAddress}}/todos/
+GET {{WebApiProject_HostAddress}}/todos?f=dueatutc&o=desc
 Accept: application/json
 
 ###
-GET {{WebApiProject_HostAddress}}/todos/1
-Accept: application/json
-
-###
-POST {{WebApiProject_HostAddress}}/todos?title=abcd
-Accept: application/json
-
-###
-PUT {{WebApiProject_HostAddress}}/todos
+POST {{WebApiProject_HostAddress}}/todos/u/1
 Accept: application/json
 Content-Type: application/json
 
 {
-  "title": "iamtest",
-  "description": "content"
+  "title": "iamchagedok"
 }
 
 ###
-DELETE {{WebApiProject_HostAddress}}/todos/8
+POST {{WebApiProject_HostAddress}}/todos
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "iamtesttworWe",
+  "description": "content",
+  "duration": "2h"
+}
+
+###
+DELETE {{WebApiProject_HostAddress}}/todos/2
 Accept: application/json
 
 ###

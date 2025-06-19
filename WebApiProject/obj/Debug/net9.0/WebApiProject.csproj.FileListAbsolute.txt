@@ -153,3 +153,7 @@
 /Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/bin/Debug/net9.0/FluentValidation.dll
 /Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/bin/Debug/net9.0/FluentValidation.DependencyInjectionExtensions.dll
 /Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/obj/Debug/net9.0/WebApiProject.sourcelink.json
+/Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/bin/Debug/net9.0/MediatR.dll
+/Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/bin/Debug/net9.0/MediatR.Contracts.dll
+/Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/bin/Debug/net9.0/AutoMapper.dll
+/Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/bin/Debug/net9.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll

@@ -21,36 +21,19 @@ namespace WebApiProject.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("TodoId");
-
-                    b.Property<DateTime>("CompleteAtUTC")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("CreatedAtUTC")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DueAtUTC")
+                    b.Property<DateTime>("DueAtUtc")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsCompleted")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("LastModifiedAtUTC")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LastModifiedBy")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("StartAtUTC")
+                    b.Property<DateTime>("StartAtUtc")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
@@ -59,7 +42,7 @@ namespace WebApiProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cool todo app");
+                    b.ToTable("Todos");
                 });
 #pragma warning restore 612, 618
         }
