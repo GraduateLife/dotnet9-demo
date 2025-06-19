@@ -11,7 +11,7 @@ using WebApiProject.Data;
 namespace WebApiProject.Migrations
 {
     [DbContext(typeof(TodoDbContext))]
-    [Migration("20250612115648_init")]
+    [Migration("20250619061116_init")]
     partial class init
     {
         /// <inheritdoc />
