@@ -13,6 +13,8 @@ internal record ListTodosHttpRequest
     public int? Size { get; set; } //page size
 }
 
+
+
 public static class TodoAppEndpoint
 {
     public static IEndpointRouteBuilder AddListTodosEndpoint(this IEndpointRouteBuilder routeGroup)
@@ -24,8 +26,8 @@ public static class TodoAppEndpoint
                         CancellationToken cancellationToken)
                     =>
                 {
-                    var query = mapper.Map<ListTodosRequest>(fromRequest);
-                    return await mediator.Send(query, cancellationToken);
+                    var toSend = mapper.Map<ListTodosRequest>(fromRequest);
+                    return await mediator.Send(toSend, cancellationToken);
                 }
             )
             .WithName("ListTodos");

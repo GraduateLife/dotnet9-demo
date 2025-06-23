@@ -25,6 +25,6 @@ public class UpdateTodoTitleCommandHandler(TodoDbContext db) : IRequestHandler<U
 
         await db.SaveChangesAsync(cancellationToken);
 
-        return Results.Ok(found);
+        return Results.Ok();
     }
 }

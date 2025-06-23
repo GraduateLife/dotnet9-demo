@@ -21,7 +21,7 @@ public class ListTodosQueryValidator : AbstractValidator<ListTodosRequest>
             .WithMessage("Page size must be between 1 and 100.");
 
         RuleFor(query => query.SearchTerm)
-            .MaximumLength(200).When(x => x.SearchTerm != null)
+            .MaximumLength(200).When(x => x.SearchTerm is not null)
             .WithMessage("Search term cannot exceed 200 characters.")
             .Matches(@"^[a-zA-Z0-9\s]*$")
             .WithMessage("Search term contains invalid characters.");

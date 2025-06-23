@@ -4,7 +4,9 @@ using WebApiProject.Data;
 
 namespace WebApiProject.Todo.CreateTodoCommand;
 
-// Commands
+
+
+
 public class CreateTodoCommand : IRequest<IResult>
 {
     public required string Title { get; init; }
@@ -15,7 +17,8 @@ public class CreateTodoCommand : IRequest<IResult>
 }
 
 // Command Handler
-public class CreateTodoCommandHandler(TodoDbContext db, IMapper mapper) : IRequestHandler<CreateTodoCommand, IResult>
+public class CreateTodoCommandHandler(TodoDbContext db, IMapper mapper)
+    : IRequestHandler<CreateTodoCommand, IResult>
 
 
 {

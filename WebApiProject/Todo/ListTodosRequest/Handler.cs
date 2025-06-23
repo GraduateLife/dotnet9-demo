@@ -30,7 +30,9 @@ public class ListTodosRequestHandler(TodoDbContext db, IMapper mapper) : IReques
 {
     public async Task<IResult> Handle(ListTodosRequest request, CancellationToken cancellationToken)
     {
-        var todoQuery = db.Todos
+        var todoQuery = db.Todos.AsNoTracking();
+        
+        todoQuery = todoQuery
             .Where(t => t.IsCompleted == request.IsCompleted);
 
         if (request.SearchTerm is not null)
