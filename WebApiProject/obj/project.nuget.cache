@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OvJShNjiT6I=",
+  "dgSpecHash": "XikMZ4mma9Q=",
   "success": true,
-  "projectFilePath": "/Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/WebApiProject.csproj",
+  "projectFilePath": "/Users/zhangyuntao/Desktop/code/abc/dotnet9-demo/WebApiProject/WebApiProject.csproj",
   "expectedPackageFiles": [
     "/Users/zhangyuntao/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/zhangyuntao/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

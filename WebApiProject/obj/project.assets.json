@@ -3795,11 +3795,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/WebApiProject.csproj",
+      "projectUniqueName": "/Users/zhangyuntao/Desktop/code/abc/dotnet9-demo/WebApiProject/WebApiProject.csproj",
       "projectName": "WebApiProject",
-      "projectPath": "/Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/WebApiProject.csproj",
+      "projectPath": "/Users/zhangyuntao/Desktop/code/abc/dotnet9-demo/WebApiProject/WebApiProject.csproj",
       "packagesPath": "/Users/zhangyuntao/.nuget/packages/",
-      "outputPath": "/Users/zhangyuntao/Desktop/code/学习dotnet/1.认识dotnet/WebApiProject/WebApiProject/obj/",
+      "outputPath": "/Users/zhangyuntao/Desktop/code/abc/dotnet9-demo/WebApiProject/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/zhangyuntao/.nuget/NuGet/NuGet.Config"
