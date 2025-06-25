@@ -17,7 +17,7 @@ builder.Services.AddSwaggerGen();
 
 var configuration = builder.Configuration;
 builder.Services.AddDbContext<TodoDbContext>(options =>
-    options.UseSqlite(configuration.GetConnectionString("Default"))
+    options.UseNpgsql(configuration.GetConnectionString("Default"))
         .LogTo(Console.WriteLine, LogLevel.Information) // 输出到控制台，级别为 Information
         .EnableSensitiveDataLogging() // 启用敏感数据日志（如参数值），仅限开发环境！
         .EnableDetailedErrors()); // 启用详细错误信息));

@@ -1,6 +1,6 @@
 @WebApiProject_HostAddress = http://localhost:5130
 
-GET {{WebApiProject_HostAddress}}/todos?f=dueatutc&o=asc&size=2&p=2
+GET {{WebApiProject_HostAddress}}/todos?f=dueatutc&o=asc
 Accept: application/json
 
 ###
